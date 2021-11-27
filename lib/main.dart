@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manga/Ui/Main/pages_account.dart';
+import 'package:manga/Ui/Main/pages_home.dart';
 import 'package:manga/Ui/Main/pages_library.dart';
 import 'package:manga/Ui/Main/pages_main.dart';
 import 'package:manga/Ui/Main/pages_search.dart';
@@ -18,11 +19,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Manga Indo", initialRoute: "/", routes: {
-      '/': (context) => const PagesMain(),
-      '/library': (context) => const PagesLibrary(),
-      '/search': (context) => const PagesSearch(),
-      '/account': (context) => const PagesAccount()
-    });
+    return MaterialApp(
+      title: "Manga Indo",
+      theme: ThemeData(fontFamily: "Montserrat"),
+      initialRoute: "/",
+      routes: {
+        '/': (context) => const PagesMain(),
+        "/home":(context)=>const PagesHome(),
+        '/library': (context) => const PagesLibrary(),
+        '/search': (context) => const PagesSearch(),
+        '/account': (context) => const PagesAccount()
+      },
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

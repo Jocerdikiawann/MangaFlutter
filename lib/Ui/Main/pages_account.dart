@@ -10,6 +10,6 @@ class PagesAccount extends StatefulWidget {
 class _PagesAccountState extends State<PagesAccount> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Text("Hello account");
   }
 }
