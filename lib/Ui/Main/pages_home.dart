@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:manga/Component/component_slider_recommen.dart';
 import 'package:manga/Component/component_slider_popular.dart';
-import 'package:manga/Component/component_slider_recommended.dart';
+import 'package:manga/Provider/manga_provider.dart';
 import 'package:manga/Utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class PagesHome extends StatefulWidget {
   const PagesHome({Key? key}) : super(key: key);
@@ -11,6 +13,13 @@ class PagesHome extends StatefulWidget {
 }
 
 class _PagesHomeState extends State<PagesHome> {
+  @override
+  void initState() {
+    Provider.of<MangaProvider>(context, listen: false).getPopularManga();
+    Provider.of<MangaProvider>(context, listen: false).getRecommendManga();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -75,7 +84,11 @@ class _PagesHomeState extends State<PagesHome> {
               ],
             ),
           ),
-          const ComponentSliderRecommended(),
+          Consumer<MangaProvider>(builder: (_, a, child) {
+            return ComponentSliderPopular(
+              popularModel: a.popularModel,
+            );
+          }),
           Padding(
             padding: const EdgeInsets.only(
               top: 30,
@@ -113,7 +126,11 @@ class _PagesHomeState extends State<PagesHome> {
               ],
             ),
           ),
-          const ComponentSliderPopular(),
+          Consumer<MangaProvider>(builder: (_, a, child) {
+            return ComponentSliderRecommended(
+              recommendManga: a.recommendedManga,
+            );
+          }),
           const SizedBox(
             height: 80,
           )
